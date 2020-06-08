@@ -5,20 +5,25 @@ VERSION = 0.8.3
 
 # paths
 PREFIX = /usr/local
+LOCAL_PREFIX = /home/mbasov/.local
 MANPREFIX = $(PREFIX)/share/man
 
-X11INC = /usr/X11R6/include
-X11LIB = /usr/X11R6/lib
+X11INC = /usr/include
+X11LIB = /usr/lib
+
+XftINC = $(LOCAL_PREFIX)/include
+XftLIB = $(LOCAL_PREFIX)/lib
 
 PKG_CONFIG = pkg-config
 
 # includes and libs
-INCS = -I$(X11INC) \
+INCS = -I$(XftINC) -I$(X11INC) \
        `$(PKG_CONFIG) --cflags fontconfig` \
        `$(PKG_CONFIG) --cflags freetype2`
-LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
+LIBS = -L$(XftLIB) -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
        `$(PKG_CONFIG) --libs fontconfig` \
-       `$(PKG_CONFIG) --libs freetype2`
+       `$(PKG_CONFIG) --libs freetype2` \
+       -Wl,-rpath=$(XftLIB)
 
 # flags
 STCPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600
