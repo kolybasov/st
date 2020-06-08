@@ -133,6 +133,13 @@ unsigned int defaultbg = 15;
 static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 
+/* Colors used for selection */
+unsigned int selectionbg = 258;
+unsigned int selectionfg = 0;
+/* If 0 use selectionfg as foreground in order to have a uniform foreground-color */
+/* Else if 1 keep original foreground-color of each cell => more colors :) */
+static int ignoreselfg = 1;
+
 /*
  * Default shape of cursor
  * 2: Block ("█")
