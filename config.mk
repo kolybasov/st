@@ -19,10 +19,12 @@ PKG_CONFIG = pkg-config
 # includes and libs
 INCS = -I$(XftINC) -I$(X11INC) \
        `$(PKG_CONFIG) --cflags fontconfig` \
-       `$(PKG_CONFIG) --cflags freetype2`
+       `$(PKG_CONFIG) --cflags freetype2` \
+       `$(PKG_CONFIG) --cflags harfbuzz`
 LIBS = -L$(XftLIB) -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
        `$(PKG_CONFIG) --libs fontconfig` \
        `$(PKG_CONFIG) --libs freetype2` \
+       `$(PKG_CONFIG) --libs harfbuzz` \
        -Wl,-rpath=$(XftLIB)
 
 # flags
